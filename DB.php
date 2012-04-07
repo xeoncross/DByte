@@ -10,8 +10,6 @@
  * @license	MIT License <http://www.opensource.org/licenses/mit-license.php>
  ********************************** 80 Columns *********************************
  */
-define('N',NULL);
-
 class DB
 {
 	static $q,$c,$p,$i = '`';
@@ -24,7 +22,7 @@ class DB
 	 * @param integer $key index of column offset
 	 * @return array|null
 	 */
-	static function column($query, $params = N, $key = 0)
+	static function column($query, $params = NULL, $key = 0)
 	{
 		if($statement = DB::query($query, $params))
 			return $statement->fetchColumn($key);
@@ -37,7 +35,7 @@ class DB
 	 * @param array $params query parameters
 	 * @return mixed
 	 */
-	static function row($query, $params = N)
+	static function row($query, $params = NULL)
 	{
 		if($statement = DB::query($query, $params))
 			return $statement->fetch();
@@ -51,7 +49,7 @@ class DB
 	 * @param array $params query parameters
 	 * @return array
 	 */
-	static function pairs($query, $params = N)
+	static function pairs($query, $params = NULL)
 	{
 		$data = array();
 
@@ -70,12 +68,12 @@ class DB
 	 * @param int $column the optional column to return
 	 * @return array
 	 */
-	static function fetch($query, $params = N, $column = N)
+	static function fetch($query, $params = NULL, $column = NULL)
 	{
 		if( ! $statement = DB::query($query, $params)) return;
 
 		// Return an array of records
-		if($column === N) return $statement->fetchAll();
+		if($column === NULL) return $statement->fetchAll();
 
 		// Fetch a certain column from all rows
 		return $statement->fetchAll(\PDO::FETCH_COLUMN, $column);
@@ -88,7 +86,7 @@ class DB
 	 * @param array $params query parameters
 	 * @return object|null
 	 */
-	static function query($query, $params = N)
+	static function query($query, $params = NULL)
 	{
 		$statement = static::$c->prepare(DB::$q[] = strtr($query, '`', DB::$i));
 		$statement->execute($params);
@@ -108,7 +106,7 @@ class DB
 			. '`)VALUES(' . rtrim(str_repeat('?,', count($data = array_values($data))), ',') . ')';
 		return DB::$p
 			? DB::column($query . 'RETURNING`id`', $data)
-			: (DB::query($query, $data) ? static::$c->lastInsertId() : N);
+			: (DB::query($query, $data) ? static::$c->lastInsertId() : NULL);
 	}
 
 	/**
