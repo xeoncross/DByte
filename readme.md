@@ -45,6 +45,9 @@ In order to work across all databases it's recommended that you use the tilde
 (\`) character in all your queries to quote column/table names. This character
 will be replaced in your query with the correct quoted identifier at run time.
 
+> DO NOT USE THE `DB.min.php` FILE! It is only included to show that the file
+> actually is 1024 characters. Unlike Javascript, you gain no performance by using it!
+
 ## Setup
 
 To begin using the DB object you need to assign a PDO connection object.
