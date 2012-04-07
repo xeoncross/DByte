@@ -42,7 +42,7 @@ However, when you query a database you generally want a certain type of result b
 # Notes / Advanced Usage
 
 In order to work across all databases it's recommended that you use the tilde
-(`\``) character in all your queries to quote column/table names. This character
+(\`) character in all your queries to quote column/table names. This character
 will be replaced in your query with the correct quoted identifier at run time.
 
 ## Setup
@@ -65,7 +65,7 @@ To begin using the DB object you need to assign a PDO connection object.
 	DB::$c = $pdo;
 
 If you are using *SQLite* or *PostgreSQL* instead of MySQL you will need to change
-the quoted identifier to the correct character (instead of the MySQL tilde `\``).
+the quoted identifier to the correct character (instead of the MySQL tilde \`).
 
 	DB::$i = '"';
 
