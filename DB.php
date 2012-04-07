@@ -1,14 +1,13 @@
 <?php
 /**
  * Provides a database wrapper around the PDO service to help reduce the effort
- * to interact with a RDBMS such as SQLite, MySQL, and PostgreSQL data source.
+ * to interact with a RDBMS such as SQLite, MySQL, or PostgreSQL.
  *
- * 		DB::$c = new PDO($dsn);
+ * 	DB::$c = new PDO($dsn);
  *
- * @package		MicroMVC
- * @author		David Pennington
- * @copyright	(c) 2011 MicroMVC Framework
- * @license		http://micromvc.com/license
+ * @author	David Pennington
+ * @copyright	(c) 2012 xeoncross.com
+ * @license	MIT License <http://www.opensource.org/licenses/mit-license.php>
  ********************************** 80 Columns *********************************
  */
 define('N',NULL);
