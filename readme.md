@@ -11,31 +11,31 @@ the single row, column, array, or object they need.
 
 However, when you query a database you generally want a certain type of result back.
 
-## I want a single column
+### I want a single column
 
 	$count = DB::column('SELECT COUNT(*) FROM `user`);
 
-## I want an array(key => value) results (i.e. for making a selectbox)
+### I want an array(key => value) results (i.e. for making a selectbox)
 
 	$pairs = DB::pairs('SELECT `id`, `username` FROM `user`);
 
-## I want a single row result
+### I want a single row result
 
 	$user = DB::row('SELECT * FROM `user` WHERE `id` = ?', array($user_id));
 
-## I want an array of results (even an empty array!)
+### I want an array of results (even an empty array!)
 
 	$banned_users = DB::fetch('SELECT * FROM `user` WHERE `banned` = ?, array(TRUE));
 
-## I want to insert a new record
+### I want to insert a new record
 
 	DB::insert('user', $array);
 
-## I want to update a record
+### I want to update a record
 
 	DB::update('user', $array, $user_id);
 
-## I want to delete a record
+### I want to delete a record
 
 	DB::query('DELETE FROM `user` WHERE `id` = ?', array($user_id));
 
