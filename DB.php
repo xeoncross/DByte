@@ -90,9 +90,9 @@ class DB
 	 */
 	static function query($query, $params = N)
 	{
-		$statment = static::$c->prepare(DB::$q[] = strtr($query, '`', DB::$i));
-		$statment->execute($params);
-		return $statment;
+		$statement = static::$c->prepare(DB::$q[] = strtr($query, '`', DB::$i));
+		$statement->execute($params);
+		return $statement;
 	}
 
 	/**
@@ -122,10 +122,10 @@ class DB
 	static function update($table, $data, $value, $column = 'id')
 	{
 		$keys = implode('`=?,`', array_keys($data));
-		if($statment = DB::query(
+		if($statement = DB::query(
 			"UPDATE`$table`SET`$keys`=?WHERE`$column`=?",
 			array_values($data + array($value))
 		))
-			return $statment->rowCount();
+			return $statement->rowCount();
 	}
 }
