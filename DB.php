@@ -121,7 +121,7 @@ class DB
 	{
 		$keys = implode('`=?,`', array_keys($data));
 		if($statement = DB::query(
-			"UPDATE`$table`SET`$keys`=?WHERE`$column`=?",
+			"UPDATE`$table`SET`$keys`=? WHERE`$column`=?",
 			array_values($data + array($value))
 		))
 			return $statement->rowCount();
