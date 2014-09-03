@@ -1,4 +1,4 @@
-<?php
+<?php die('not for direct access');
 
 // So our print_r's look good :)
 header('Content-Type: text/plain');
@@ -7,8 +7,9 @@ header('Content-Type: text/plain');
 function br(){print "\n" . str_repeat('-',50) . "\n";}
 
 // We need this!
-require('DB.php');
+require('vendor/autoload.php');
 
+use \DByte\DB;
 
 /*
  * Connect to Database

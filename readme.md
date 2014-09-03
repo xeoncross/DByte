@@ -48,6 +48,36 @@ will be replaced in your query with the correct quoted identifier at run time.
 > DO NOT USE THE `DB.min.php` FILE! It is only included to show that the file
 > actually is 1024 characters. Unlike Javascript, you gain no performance by using it!
 
+## Composer Install
+
+The easiest way to install DByte is [to use composer](https://getcomposer.org/).
+
+	curl -s http://getcomposer.org/installer | php
+
+Then create a `composer.json` file in your root directory and include this inside it.
+
+	{
+		"require": {
+			"xeoncross/dbyte" : "dev-master"
+		}
+	}
+
+With composer installed (and your `composer.json` file created) you can then run
+composer to install DByte into a "vendors" folder..
+
+	php composer.phar install
+
+which you can include in your PHP scripts...
+
+	require 'vendor/autoload.php';
+
+### Simple Install
+
+Or you can just [download the file](https://github.com/Xeoncross/DByte/archive/master.zip)
+and then include it in your scripts.
+
+	require('DByte\DB.php');
+
 ## Setup
 
 To begin using the DB object you need to assign a PDO connection object.
@@ -64,7 +94,7 @@ To begin using the DB object you need to assign a PDO connection object.
 		)
 	);
 
-	require('DB.php');
+	use \DByte\DB; // or class_alias('\DByte\DB', 'DB');
 	DB::$c = $pdo;
 
 If you are using *SQLite* or *PostgreSQL* instead of MySQL you will need to change
@@ -80,7 +110,7 @@ If you are using *PostgreSQL* you will also need to set the *PostgreSQL* marker.
 
 Using late-static-binding (PHP 5.3+) it's easy - just extend the DB class!
 
-	Class DB2 extends DB {}
+	Class DB2 extends \DByte\DB {}
 
 	DB::$c = new PDO(...);
 	DB2::$c = new PDO(...);

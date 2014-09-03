@@ -10,6 +10,8 @@
  * @license	MIT License <http://www.opensource.org/licenses/mit-license.php>
  ********************************** 80 Columns *********************************
  */
+namespace DByte;
+
 class DB
 {
 	static $q,$c,$p,$i = '`';
@@ -102,10 +104,10 @@ class DB
 	 */
 	static function insert($table, array $data)
 	{
-		$query = "INSERT INTO`$table`(`" . implode('`,`', array_keys($data))
-			. '`)VALUES(' . rtrim(str_repeat('?,', count($data = array_values($data))), ',') . ')';
+		$query = "INSERT INTO `$table` (`" . implode('`, `', array_keys($data))
+			. '`) VALUES (' . rtrim(str_repeat('?, ', count($data = array_values($data))), ', ') . ')';
 		return DB::$p
-			? DB::column($query . 'RETURNING`id`', $data)
+			? DB::column($query . ' RETURNING `id`', $data)
 			: (DB::query($query, $data) ? static::$c->lastInsertId() : NULL);
 	}
 
@@ -121,7 +123,7 @@ class DB
 	{
 		$keys = implode('`=?,`', array_keys($data));
 		if($statement = DB::query(
-			"UPDATE`$table`SET`$keys`=? WHERE`$column`=?",
+			"UPDATE `$table` SET `$keys` = ? WHERE `$column` = ?",
 			array_values($data + array($value))
 		))
 			return $statement->rowCount();
